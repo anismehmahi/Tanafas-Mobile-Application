@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "127042840411",
+    "project_id": "oxygene-70073",
+    "storage_bucket": "oxygene-70073.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127042840411:android:6f905062007fa374891c7e",
+        "android_client_info": {
+          "package_name": "com.aniscoffee.oxygene"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127042840411-m7m7iua252ks4nrl75eo3hkum8d7ldp5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR_MV_MzTSqr0xUYStjkvnWUZhvkiajgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127042840411-m7m7iua252ks4nrl75eo3hkum8d7ldp5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127042840411:android:c93b0776c152504f891c7e",
+        "android_client_info": {
+          "package_name": "com.o2app.o2app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127042840411-m7m7iua252ks4nrl75eo3hkum8d7ldp5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR_MV_MzTSqr0xUYStjkvnWUZhvkiajgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127042840411-m7m7iua252ks4nrl75eo3hkum8d7ldp5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
