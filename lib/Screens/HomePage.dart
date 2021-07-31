@@ -121,6 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('بحث'),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed:() {
+            Navigator.pop(context);
+          }, icon: Icon(Icons.home_outlined))
+        ],
       ),
       drawer:   SafeArea(
         child: Drawer(
@@ -177,53 +182,62 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: EdgeInsets.only(left: 10),
 
                             height: 70,
-                            child: DropdownButtonFormField<String>(
-                              value: _value,
-                              //isExpanded: true,
-                              hint: Text('WILAYA'),
-                              icon: const Icon(Icons.arrow_downward),
-                              iconSize: 20,
-                              elevation: 16,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                              ),
-                              // underline: Container(
-                              //   margin: const EdgeInsets.only(
-                              //       left: 0, top: 20, right: 0, bottom: 0),
-                              //   child: Container(
-                              //     height: 1,
-                              //     color: Colors.grey,
-                              //   ),
-                              // ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'REQUIRED';
-                                } else {
-                                  return null;
-                                }
-                              },
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _value = newValue;
-                                  // formKey.currentState.validate();
-                                });
-                              },
-                              items: wilayas
-                                  .map((e) => DropdownMenuItem<String>(
-                                value: e,
-                                child: Text(e),
-                                onTap: () {
+                            child: SizedBox(
+                              width: 100,
+                              child: DropdownButtonFormField<String>(
+                                decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(color: Color(0xFF6F35A5)))),
+                                value: _value,
+                                //isExpanded: true,
+                                hint: Text('WILAYA',style:
+                                  TextStyle(
+                                    color: Colors.black
+                                  ),),
+                                icon: const Icon(Icons.keyboard_arrow_down_sharp,color: Color(0xFF6F35A5),),
+                                iconSize: 20,
+                                elevation: 16,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                ),
+                                // underline: Container(
+                                //   margin: const EdgeInsets.only(
+                                //       left: 0, top: 20, right: 0, bottom: 0),
+                                //   child: Container(
+                                //     height: 1,
+                                //     color: Colors.grey,
+                                //   ),
+                                // ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'REQUIRED';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onChanged: (newValue) {
                                   setState(() {
-                                    _value = e;
-                                    FocusScope.of(context)
-                                        .requestFocus(new FocusNode());
+                                    _value = newValue;
+                                    // formKey.currentState.validate();
                                   });
                                 },
-                              ))
-                                  .toList(),
+                                items: wilayas
+                                    .map((e) => DropdownMenuItem<String>(
+                                  value: e,
+                                  child: Text(e),
+                                  onTap: () {
+                                    setState(() {
+                                      _value = e;
+                                      FocusScope.of(context)
+                                          .requestFocus(new FocusNode());
+                                    });
+                                  },
+                                ))
+                                    .toList(),
 
 
+                              ),
                             ),
 
                           ),
@@ -245,17 +259,22 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: EdgeInsets.only(right: 10),
                             height: 70,
                             child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: Color(0xFF6F35A5)))),
 
                               value: _value2,
                              // isExpanded: true,
-                              hint: Text('Besoin'),
-                              icon: const Icon(Icons.arrow_downward),
-                              iconSize: 20,
-                              elevation: 16,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                              ),
+                              hint: Text('Besoin',style:TextStyle(
+                                  color: Colors.black
+                            ),),
+                          icon: const Icon(Icons.keyboard_arrow_down_sharp,color: Color(0xFF6F35A5),),
+                          iconSize: 20,
+                          elevation: 16,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                          ),
                               // underline: Container(
                               //   margin: const EdgeInsets.only(
                               //       left: 0, top: 20, right: 0, bottom: 0),

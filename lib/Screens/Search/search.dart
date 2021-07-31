@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
+
 class Searchpage extends StatefulWidget {
   //static String id ='Searchpage' ;
 
@@ -135,7 +136,7 @@ class _SearchpageState extends State<Searchpage> {
                           value: _value,
                           isExpanded: true,
                           hint: Text('WILAYA'),
-                          icon: const Icon(Icons.arrow_downward),
+                          icon: const Icon(Icons.keyboard_arrow_down_sharp,color: Color(0xFF6F35A5),),
                           iconSize: 20,
                           elevation: 16,
                           style: const TextStyle(

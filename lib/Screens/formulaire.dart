@@ -411,7 +411,7 @@ setState(() {
                       minWidth: 100,
                       initialLabelIndex: currentindex,
                       totalSwitches: 2,
-                      labels: ['Donneur', 'Vendeur'],
+                      labels: ['متبرع', 'بائع'],
                       onToggle: (index) {
                         setState(() {
                           currentindex = index;
@@ -631,7 +631,7 @@ setState(() {
 
 
                     RoundedButton(
-                      text: "Confirmer",
+                      text: "تأكيد",
                       press: () async{
                         bool good= formKey.currentState.validate();
                         if(!checkedValue0&&!checkedValue2&&!checkedValue1){

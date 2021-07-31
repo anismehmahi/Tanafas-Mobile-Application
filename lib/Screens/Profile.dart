@@ -116,7 +116,7 @@ class _ProfileState extends State<Profile> {
 
                     child: Card(
 
-                        margin: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+                        margin: EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
                         child: Container(
                             width: double.infinity,
                             height:250.0,
@@ -125,14 +125,14 @@ class _ProfileState extends State<Profile> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Center(
-                                    child:
-
-                                    Text("المزيد",
-                                      style: TextStyle(
-                                        fontSize: 17.0,
-                                        fontWeight: FontWeight.w800,
-                                      ),),),
+                                  // Center(
+                                  //   child:
+                                  //
+                                  //   Text("المزيد",
+                                  //     style: TextStyle(
+                                  //       fontSize: 17.0,
+                                  //       fontWeight: FontWeight.w800,
+                                  //     ),),),
                                   Divider(color: Colors.grey[300],),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -236,7 +236,7 @@ class _ProfileState extends State<Profile> {
                         Container(
                             child:Column(
                               children: [
-                                Text('خدمات',
+                                Text('الخدمات',
                                   style: TextStyle(
                                       color: Colors.grey[600],
                                       fontSize: 20.0
@@ -270,7 +270,7 @@ class _ProfileState extends State<Profile> {
                       //    color: Colors.green,
                             child:Column(
                               children: [
-                                Text('ثمن',
+                                Text('الثمن',
                                   style: TextStyle(
                                       color: Colors.grey[600],
                                       fontSize: 20.0
@@ -279,7 +279,7 @@ class _ProfileState extends State<Profile> {
                                 Container(
                                  // color: Colors.red,
                                  // height: 100,
-                                  width: 100,
+                                  width: 120,
                                   child: ListView.builder(
                                       padding: EdgeInsets.only(top: 0.0,bottom: 5),
                                       shrinkWrap: true,
