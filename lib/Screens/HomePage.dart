@@ -363,9 +363,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //   height: 50,
                                     // ),
                                     title: new Text(
-                                      data['name'].toString().toUpperCase(),
+                                      "${data['name'].toString().toUpperCase()} ${data['prenom'].toString().toUpperCase()} ",
                                       style: TextStyle(
-                                          fontSize: 20, fontWeight: FontWeight.w400),
+                                          fontSize: 19, fontWeight: FontWeight.w400),
                                     ),
                                     subtitle: new Text(
                                       data['type'].toString().compareTo('donneur')==0? 'متبرع': "بائع",
