@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tnafes/Screens/HireUs.dart';
 import 'package:tnafes/Screens/Profile.dart';
 import 'package:tnafes/Screens/Welcome/welcome_screen.dart';
 import 'package:tnafes/Screens/formulaire.dart';
@@ -416,8 +417,8 @@ class _MyHomePageState extends State<MyHomePage> {
           widget.visiteur==true? Container(height: 0,):  menuItem(4, "تسجيل الخروج", Icons.logout,
               currentPage == DrawerSections.logout ? true : false),
           Divider(),
-          // menuItem(5, "طريقة الاستعمال", Icons.privacy_tip_outlined,
-          //     currentPage == DrawerSections.privacy_policy ? true : false),
+          menuItem(5, "للتواصل", Icons.contact_mail,
+              currentPage == DrawerSections.privacy_policy ? true : false),
           menuItem(6, "دعم المطورين ", Icons.monetization_on,
               currentPage == DrawerSections.send_feedback ? true : false),
           Divider(),
@@ -456,8 +457,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   (route) => false,
             );
           } else if (id == 5) {
-            // Navigator.of(context).push(
-            //     MaterialPageRoute(builder: (context) => PrivacyPolicy()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => HireUs()));
           } else if (id == 6) {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => Donation()));

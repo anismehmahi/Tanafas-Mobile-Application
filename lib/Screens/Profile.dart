@@ -279,7 +279,7 @@ class _ProfileState extends State<Profile> {
                                 Container(
                                  // color: Colors.red,
                                  // height: 100,
-                                  width: 100,
+                                  width: 120,
                                   child: ListView.builder(
                                       padding: EdgeInsets.only(top: 0.0,bottom: 5),
                                       shrinkWrap: true,
