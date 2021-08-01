@@ -123,9 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('بحث'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed:() {
+         widget.visiteur? IconButton(onPressed:() {
             Navigator.pop(context);
-          }, icon: Icon(Icons.home_outlined))
+          }, icon: Icon(Icons.home_outlined)):Container()
         ],
       ),
       drawer:   SafeArea(
