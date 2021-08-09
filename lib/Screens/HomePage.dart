@@ -1,5 +1,7 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tnafes/Ads/AdsManager.dart';
 import 'package:tnafes/Screens/HireUs.dart';
 import 'package:tnafes/Screens/Profile.dart';
 import 'package:tnafes/Screens/Welcome/welcome_screen.dart';
@@ -107,7 +109,17 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-   if(!widget.visiteur){
+    interstitialAd = AdmobInterstitial(
+      adUnitId: AdsManager.interstitialAdUnitId,
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+      },
+    );
+
+    interstitialAd.load();
+   // _nativeAdController.reloadAd(forceRefresh: true);
+
+    if(!widget.visiteur){
      getName().then((value) {
        setState(() {
          nom=value;
@@ -115,7 +127,19 @@ class _MyHomePageState extends State<MyHomePage> {
      });
      Future.delayed(Duration(milliseconds: 200));
    }
+
   }
+
+  AdmobBannerSize bannerSize;
+  AdmobInterstitial interstitialAd;
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    interstitialAd.dispose();
+   // _nativeAdController.dispose();
+
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             //padding: EdgeInsets.only(left: 10),
 
 
-                            padding: EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.only(left: 7),
 
                             height: 70,
                             child: SizedBox(
@@ -257,7 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Expanded(
 
                           child: Container(
-                            padding: EdgeInsets.only(right: 10),
+                            padding: EdgeInsets.only(right: 7),
                             height: 70,
                             child: DropdownButtonFormField<String>(
                               decoration: InputDecoration(
@@ -320,9 +344,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
 
 
-                    _value==null || _value2==null ? Container(
-                      height: MediaQuery.of(context).size.height*0.5,
-                      width: double.infinity,
+                    _value==null || _value2==null ? Expanded(
+                     // color: Colors.red,
+                      //height: MediaQuery.of(context).size.height*0.7,
+                    //  width: double.infinity,
 
                       child: Center(child: Text('يرجى اختيار ولاية و الحاجة للبحث')),
                     ):StreamBuilder<QuerySnapshot>(
@@ -332,77 +357,91 @@ class _MyHomePageState extends State<MyHomePage> {
                       builder:  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
 
                         if (!snapshot.hasData) return new CircularProgressIndicator();
+                        else{
+                          if(snapshot.data.docs.length>0){
+                            return Expanded(
 
-                        return Expanded(
-
-                          child: ListView.builder(
-                            itemCount:snapshot.data.docs.length,
-                            itemBuilder: (context,index){
-                              DocumentSnapshot data = snapshot.data.docs[index];
-                              return Card(
-                                elevation: 5.0,
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(color: Colors.deepPurpleAccent, width: 1.5),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                margin: new EdgeInsets.symmetric(
-                                    horizontal: 10.0, vertical: 4.0),
-                                child: Container(
-                                  child: ListTile(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 15.0, vertical: 5.0),
-                                    leading:   CircleAvatar(
-                                      radius: 25.0,
-                                      backgroundImage: AssetImage('assets/images/user2.jpg'),
-                                      backgroundColor: Colors.white,
+                              child: ListView.builder(
+                                itemCount:snapshot.data.docs.length,
+                                itemBuilder: (context,index){
+                                  DocumentSnapshot data = snapshot.data.docs[index];
+                                  return Card(
+                                    elevation: 5.0,
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(color: Colors.deepPurpleAccent, width: 1.5),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                    // leading:  Image.network(
-                                    //   book.urlImage,
-                                    //   fit: BoxFit.cover,
-                                    //   width: 50,
-                                    //   height: 50,
-                                    // ),
-                                    title: new Text(
-                                      "${data['name'].toString().toUpperCase()} ${data['prenom'].toString().toUpperCase()} ",
-                                      style: TextStyle(
-                                          fontSize: 19, fontWeight: FontWeight.w400),
+                                    margin: new EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 4.0),
+                                    child: Container(
+                                      child: ListTile(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            horizontal: 15.0, vertical: 5.0),
+                                        leading:   CircleAvatar(
+                                          radius: 25.0,
+                                          backgroundImage: AssetImage('assets/images/user2.jpg'),
+                                          backgroundColor: Colors.white,
+                                        ),
+                                        // leading:  Image.network(
+                                        //   book.urlImage,
+                                        //   fit: BoxFit.cover,
+                                        //   width: 50,
+                                        //   height: 50,
+                                        // ),
+                                        title: new Text(
+                                          "${data['name'].toString().toUpperCase()} ${data['prenom'].toString().toUpperCase()} ",
+                                          style: TextStyle(
+                                              fontSize: 19, fontWeight: FontWeight.w400),
+                                        ),
+                                        subtitle: new Text(
+                                          data['type'].toString().compareTo('donneur')==0? 'متبرع': "بائع",
+                                          style: TextStyle(
+                                              fontSize: 17, fontWeight: FontWeight.w300),
+                                        ),
+                                        trailing: Icon(Icons.keyboard_arrow_right_sharp,color: Colors.deepPurpleAccent,),
+                                        enabled: true,
+                                        dense: true,
+                                        selected: false,
+                                        // tileColor: Colors.green[400],
+                                        focusColor: Colors.orangeAccent,
+                                        hoverColor: Colors.blue,
+                                        onTap: () {
+
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(builder: (_) {
+                                            return Profile(
+                                              data['name'],
+                                              data['prenom'],
+                                              data['rue'],
+                                              data['wilaya'],
+                                              data['type'],
+                                              data['tel'],
+                                              data['service'] ,
+
+                                            );
+                                          }));
+                                          interstitialAd.show();
+                                          // print('thebookpageof '+  data['title'].toString(),);
+                                        },
+                                      ),
                                     ),
-                                    subtitle: new Text(
-                                      data['type'].toString().compareTo('donneur')==0? 'متبرع': "بائع",
-                                      style: TextStyle(
-                                          fontSize: 17, fontWeight: FontWeight.w300),
-                                    ),
-                                    trailing: Icon(Icons.keyboard_arrow_right_sharp,color: Colors.deepPurpleAccent,),
-                                    enabled: true,
-                                    dense: true,
-                                    selected: false,
-                                    // tileColor: Colors.green[400],
-                                    focusColor: Colors.orangeAccent,
-                                    hoverColor: Colors.blue,
-                                    onTap: () {
+                                  );
 
-                                      return Navigator.of(context)
-                                          .push(MaterialPageRoute(builder: (_) {
-                                        return Profile(
-                                          data['name'],
-                                          data['prenom'],
-                                          data['rue'],
-                                          data['wilaya'],
-                                          data['type'],
-                                          data['tel'],
-                                          data['service'] ,
+                                },),
+                            );
+                          }
+                          else{
+                            return Expanded(child: Center(child: Text('يرجى الانتظار بينما يتوفر بائع او متبرع في هذه المنطقة', textAlign: TextAlign.center,softWrap: true,),));
+                          }
+                        }
 
-                                        );
-                                      }));
-                                      // print('thebookpageof '+  data['title'].toString(),);
-                                    },
-                                  ),
-                                ),
-                              );
-
-                            },),
-                        );
                       },),
+
+                    // adsssssssssssssssssssss
+              AdmobBanner(
+                adUnitId: AdsManager.bannerAdUnitId,
+                adSize: AdmobBannerSize.SMART_BANNER(context),
+              )
 
                   ],
                 )
@@ -438,8 +477,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Divider(),
           menuItem(5, "للتواصل", Icons.contact_mail,
               currentPage == DrawerSections.privacy_policy ? true : false),
-          menuItem(6, "دعم المطورين ", Icons.monetization_on,
-              currentPage == DrawerSections.send_feedback ? true : false),
+          // menuItem(6, "دعم المطورين ", Icons.monetization_on,
+          //     currentPage == DrawerSections.send_feedback ? true : false),
           Divider(),
         ],
       ),
@@ -479,8 +518,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => HireUs()));
           } else if (id == 6) {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => Donation()));
+            // Navigator.of(context).push(
+            //     MaterialPageRoute(builder: (context) => Donation()));
           }
           // } else if (id == 7) {
           //   currentPage = DrawerSections.privacy_policy;

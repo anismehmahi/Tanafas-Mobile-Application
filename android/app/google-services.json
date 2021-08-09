@@ -14,6 +14,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "127042840411-9jn1ne2o1m44ug7d95odfuhmb8ae7f55.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aniscoffee.oxygene",
+            "certificate_hash": "f935962dce82f51a645c94bc4b5eec5e982200f6"
+          }
+        },
+        {
+          "client_id": "127042840411-e4q1p4ou8o4rhcl8db1no6fghl8nm4bo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aniscoffee.oxygene",
+            "certificate_hash": "d4d67e843cc465606e30558696a21f13c6b802a1"
+          }
+        },
+        {
+          "client_id": "127042840411-fn1dq690urqsemge6pr33db76uj96la2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aniscoffee.oxygene",
+            "certificate_hash": "b3ad2aad1183ef8a8c4671ec8889b80bc622e273"
+          }
+        },
+        {
           "client_id": "127042840411-m7m7iua252ks4nrl75eo3hkum8d7ldp5.apps.googleusercontent.com",
           "client_type": 3
         }

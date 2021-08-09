@@ -9,7 +9,7 @@ class Profile extends StatefulWidget {
 
 
   String name ;
-String prenom= '';
+  String prenom= '';
   String adress='';
   String wilaya;
   String type;
@@ -38,8 +38,10 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
 
       extendBodyBehindAppBar: true,
+
       appBar:AppBar(
-        title: Text('معلومات أكثر',
+
+        title: Text('',
 
         ),
         centerTitle: true,
@@ -56,276 +58,288 @@ class _ProfileState extends State<Profile> {
       ,
 
 
-      body: Stack(
+      body: Column(
         children: [
-          Column(
-            children: [
-              Expanded(
-                flex:5,
-                child:Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.deepPurple[800],Colors.deepPurpleAccent],
-                    ),
-                  ),
-                  child: Column(
-                      children: [
-                        SizedBox(height: 110.0,),
-                        CircleAvatar(
-                          radius: 65.0,
-                          backgroundImage: AssetImage('assets/images/user2.jpg'),
-                          backgroundColor: Colors.white,
-                        ),
-                        SizedBox(height: 10.0,),
-                        Text("${widget.name.toUpperCase()} ${widget.prenom.toUpperCase()}",
-                            style: TextStyle(
-                              color:Colors.white,
-                              fontSize: 20.0,
-                            )),
-                        SizedBox(height: 10.0,),
-
-
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-
-                              Text(widget.wilaya.toUpperCase(),
-                                style: TextStyle(
-                                  color:Colors.white,
-                                  fontSize: 16.0,
-                                ),),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Icon(Icons.location_pin,
-                                color: Colors.white,),
-                            ]),
-
-                        ///////////////
-                      ]
-                  ),
+          Expanded(
+            flex:5,
+            child:Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.deepPurple[800],Colors.deepPurpleAccent],
                 ),
               ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
 
-              Expanded(
-                flex:5,
-                child: Container(
-                  color: Colors.grey[200],
-                  child: Center(
+                    children: [
+                      CircleAvatar(
+                        radius: 65.0,
+                        backgroundImage: AssetImage('assets/images/user2.jpg'),
+                        backgroundColor: Colors.white,
+                      ),
+                      SizedBox(height: 10.0,),
+                      Text("${widget.name.toUpperCase()} ${widget.prenom.toUpperCase()}",
+                          style: TextStyle(
+                            color:Colors.white,
+                            fontSize: 20.0,
+                          )),
+                      SizedBox(height: 10.0,),
 
-                    child: Card(
 
-                        margin: EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
-                        child: Container(
-                            width: double.infinity,
-                            height:250.0,
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+
+                            Text(widget.wilaya.toUpperCase(),
+                              style: TextStyle(
+                                color:Colors.white,
+                                fontSize: 16.0,
+                              ),),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Icon(Icons.location_pin,
+                              color: Colors.white,),
+                          ]),
+
+                      ///////////////
+                    ]
+                ),
+              ),
+            ),
+          ),
+
+          Expanded(
+            flex:5,
+
+            child: Container(
+
+              color: Colors.grey[200],
+              child: Center(
+
+                child: Card(
+
+                    //margin: EdgeInsets.fromLTRB(0.0, 40.0, 0.0,20.0),
+                    child: SingleChildScrollView(
+                      //
+                      // width: double.infinity,
+                      // height:250,
+
+                        child: Padding(
+                          padding:EdgeInsets.fromLTRB(10.0, 10.0, 10.0,20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  // Center(
-                                  //   child:
-                                  //
-                                  //   Text("المزيد",
-                                  //     style: TextStyle(
-                                  //       fontSize: 17.0,
-                                  //       fontWeight: FontWeight.w800,
-                                  //     ),),),
-                                  Divider(color: Colors.grey[300],),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.add_reaction,
-                                        color: Colors.deepPurple[400],
-                                        size: 30,
-                                      ),
-                                      SizedBox(width: 20.0,),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                  Container(
+                                      child:Column(
                                         children: [
-                                          Text(widget.type.compareTo('donneur')==0?'متبرع':'بائع',
+                                          Text('الخدمات',
                                             style: TextStyle(
-                                              fontSize: 18.0,
+                                                color: Colors.grey[600],
+                                                fontSize: 20.0
                                             ),),
-                                          // Text("FairyTail, Magnolia",
+                                          SizedBox(height: 5.0,),
+                                          Container(
+                                            // color: Colors.red,
+                                            // height: 100,
+                                            width: 150,
+                                            child: ListView.builder(
+                                                padding: EdgeInsets.only(top: 0.0,bottom: 5),
+                                                shrinkWrap: true,
+                                                itemCount:3 ,
+                                                itemBuilder: (ctx, index){
+                                                  if(widget.service[index]!='#'){
+                                                    return Text(widget.service[index+3], textAlign: TextAlign.center,
+                                                      style: TextStyle(fontSize: 17),);
+                                                  }
+                                                  else{ return Container();}
+
+                                                }),
+                                          ),
+                                          // Text('19 yrs',
                                           //   style: TextStyle(
-                                          //     fontSize: 12.0,
-                                          //     color: Colors.grey[400],
+                                          //     fontSize: 15.0,
                                           //   ),)
                                         ],
                                       )
-
-                                    ],
                                   ),
-                                  SizedBox(height: 20.0,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.call,
-                                        color: Colors.deepPurple[400],
-                                        size: 35,
-                                      ),
-                                      SizedBox(width: 20.0,),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                  Container(
+                                    //    color: Colors.green,
+                                      child:Column(
                                         children: [
-                                          Text(widget.tel.toUpperCase(),
+                                          Text('الثمن',
                                             style: TextStyle(
-                                              fontSize: 15.0,
+                                                color: Colors.grey[600],
+                                                fontSize: 20.0
                                             ),),
+                                          SizedBox(height: 5.0,),
+                                          Container(
+                                            // color: Colors.red,
+                                            // height: 100,
+                                            width: 120,
+                                            child: ListView.builder(
+                                                padding: EdgeInsets.only(top: 0.0,bottom: 5),
+                                                shrinkWrap: true,
+                                                itemCount:3 ,
+                                                itemBuilder: (ctx, index){
+                                                  if(widget.service[index]!='#'){
+                                                    return Text("${widget.service[index].toString().toUpperCase()} DZD", textAlign: TextAlign.center,
+                                                      style: TextStyle(fontSize: 17),
+                                                    );
+                                                  }
+                                                  else{ return Container();}
 
+                                                }),
+                                          ),
+                                          // Text("$counter",
+                                          //   style: TextStyle(
+                                          //     fontSize: 15.0,
+                                          //   ),)
                                         ],
                                       )
-
-                                    ],
                                   ),
-                                  SizedBox(height: 20.0,),
 
+                                  // Container(
+                                  //   child: Column(
+                                  //       children: [
+                                  //         Text('Birthday',
+                                  //           style: TextStyle(
+                                  //               color: Colors.grey[400],
+                                  //               fontSize: 14.0
+                                  //           ),),
+                                  //         SizedBox(height: 5.0,),
+                                  //         Text('April 7th',
+                                  //           style: TextStyle(
+                                  //             fontSize: 15.0,
+                                  //           ),)
+                                  //       ]),
+                                  // ),
 
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.home,
-                                        color: Colors.deepPurple[400],
-                                        size: 35,
-                                      ),
-                                      SizedBox(width: 20.0,),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(widget.adress.toUpperCase(),
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),),
-
-                                        ],
-                                      )
-
-                                    ],
-                                  ),
 
                                 ],
                               ),
-                            )
+                              // Center(
+                              //   child:
+                              //
+                              //   Text("المزيد",
+                              //     style: TextStyle(
+                              //       fontSize: 17.0,
+                              //       fontWeight: FontWeight.w800,
+                              //     ),),),
+                              // Container(
+                              //   color: Colors.grey[200],
+                              //     width: double.infinity,
+                              //
+                              //     height: 40,
+                              //
+                              //
+                              // ),
+                              Divider(
+                                //   //color: Colors.grey[200],
+                                //   height: 20,
+                                // //indent: 20,
+                                // // endIndent: 20 ,
+                                //  thickness: 1.5,
+                              ),
+                              SizedBox(
+
+                                height: 10.0,
+                              ),
+
+
+                              // SizedBox(height: 20.0,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.call,
+                                    color: Colors.deepPurple[400],
+                                    size: 35,
+                                  ),
+                                  SizedBox(width: 20.0,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(widget.tel.toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize: 15.0,
+                                        ),),
+
+                                    ],
+                                  )
+
+                                ],
+                              ),
+                              SizedBox(height: 20.0,),
+
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.home,
+                                    color: Colors.deepPurple[400],
+                                    size: 35,
+                                  ),
+                                  SizedBox(width: 20.0,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(widget.adress.toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize: 15.0,
+                                        ),),
+
+                                    ],
+                                  )
+
+                                ],
+                              ),
+                              SizedBox(height: 20.0,),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.add_reaction,
+                                    color: Colors.deepPurple[400],
+                                    size: 30,
+                                  ),
+                                  SizedBox(width: 20.0,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(widget.type.compareTo('donneur')==0?'متبرع':'بائع',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),),
+                                      // Text("FairyTail, Magnolia",
+                                      //   style: TextStyle(
+                                      //     fontSize: 12.0,
+                                      //     color: Colors.grey[400],
+                                      //   ),)
+                                    ],
+                                  )
+
+                                ],
+                              ),
+                            ],
+                          ),
                         )
-                    ),
-
-                  ),
+                    )
                 ),
-              ),
 
-            ],
+              ),
+            ),
           ),
 
-
-          Positioned(
-              top:MediaQuery.of(context).size.height*0.45,
-              left: 20.0,
-              right: 20.0,
-              child: Card(
-                  child: Padding(
-                    padding:EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                            child:Column(
-                              children: [
-                                Text('الخدمات',
-                                  style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 20.0
-                                  ),),
-                                SizedBox(height: 5.0,),
-                                Container(
-                                  // color: Colors.red,
-                                  // height: 100,
-                                  width: 150,
-                                  child: ListView.builder(
-                                      padding: EdgeInsets.only(top: 0.0,bottom: 5),
-                                      shrinkWrap: true,
-                                      itemCount:3 ,
-                                      itemBuilder: (ctx, index){
-                                        if(widget.service[index]!='#'){
-                                          return Text(widget.service[index+3], textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 17),);
-                                        }
-                                        else{ return Container();}
-
-                                      }),
-                                ),
-                                // Text('19 yrs',
-                                //   style: TextStyle(
-                                //     fontSize: 15.0,
-                                //   ),)
-                              ],
-                            )
-                        ),
-                        Container(
-                      //    color: Colors.green,
-                            child:Column(
-                              children: [
-                                Text('الثمن',
-                                  style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 20.0
-                                  ),),
-                                SizedBox(height: 5.0,),
-                                Container(
-                                 // color: Colors.red,
-                                 // height: 100,
-                                  width: 120,
-                                  child: ListView.builder(
-                                      padding: EdgeInsets.only(top: 0.0,bottom: 5),
-                                      shrinkWrap: true,
-                                     itemCount:3 ,
-                                   itemBuilder: (ctx, index){
-                                       if(widget.service[index]!='#'){
-                                           return Text("${widget.service[index].toString().toUpperCase()} DZD", textAlign: TextAlign.center,
-                                           style: TextStyle(fontSize: 17),
-                                           );
-                                         }
-                                       else{ return Container();}
-
-                             }),
-                                ),
-                                // Text("$counter",
-                                //   style: TextStyle(
-                                //     fontSize: 15.0,
-                                //   ),)
-                              ],
-                            )
-                        ),
-
-                        // Container(
-                        //   child: Column(
-                        //       children: [
-                        //         Text('Birthday',
-                        //           style: TextStyle(
-                        //               color: Colors.grey[400],
-                        //               fontSize: 14.0
-                        //           ),),
-                        //         SizedBox(height: 5.0,),
-                        //         Text('April 7th',
-                        //           style: TextStyle(
-                        //             fontSize: 15.0,
-                        //           ),)
-                        //       ]),
-                        // ),
-
-
-                      ],
-                    ),
-                  )
-              )
-          )
         ],
-
       ),
     );
   }
